@@ -6,10 +6,10 @@ public class Ship : MonoBehaviour
     public float size;
     public int points;
     public float health = 1;
+    Rigidbody2D rb;
 
     private void Update()
     {
-        transform.position = transform.position - transform.up * speed;
         if (health <= 0)
         {
             GameManager.instance.GivePoints(points);
@@ -29,5 +29,18 @@ public class Ship : MonoBehaviour
         transform.localScale = new Vector2(size, size);
         points = newPoints;
         health = newHealth;
+    }
+
+    public void Move()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.AddForce(Vector2.down * speed, ForceMode2D.Impulse);
+    }
+
+    public void Damage(int damage)
+    {
+        Debug.Log("damaged");
+        health -= damage;
     }
 }

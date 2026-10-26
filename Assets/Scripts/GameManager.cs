@@ -54,21 +54,23 @@ public class GameManager : MonoBehaviour
             {
                 Ship tankShip = new ShipBuilder()
                     .SetPrefab(enemyPrefab)
-                    .AssignSpeed(.0075f)
+                    .AssignSpeed(1f)
                     .AssignSize(2)
                     .AssignPoints(10)
-                    .AssignHealth(10)
+                    .AssignHealth(4)
                     .Build(spawns[spawn].position, enemyPrefab.transform.rotation);
+                tankShip.Move();
             }
             else
             {
                 Ship fastShip = new ShipBuilder()
                     .SetPrefab(enemyPrefab)
-                    .AssignSpeed(.015f)
+                    .AssignSpeed(2.5f)
                     .AssignSize(1)
                     .AssignPoints(3)
-                    .AssignHealth(3)
+                    .AssignHealth(1)
                     .Build(spawns[spawn].position, enemyPrefab.transform.rotation);
+                fastShip.Move();
             }
         }
     }

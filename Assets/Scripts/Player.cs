@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public InputActionReference shootAction;
     public float[] worldBounds = new float[4];
 
+    public GameObject bulletPrefab;
     public float speed = 2f;
     public float fireRate = 1f;
 
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
 
         if (shootAction.action.IsPressed() && timeSinceShot <= 0)
         {
-            // fire
+            ObjectPool.instance.Create(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
             Debug.Log("shoot");
             timeSinceShot = fireRate;
         }
